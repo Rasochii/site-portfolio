@@ -1,5 +1,5 @@
 const API_URL = `https://api.github.com/users/${GITHUB_USER}`;
-const CACHE_KEY = 'gh-cache-v1';
+const CACHE_KEY = 'gh-repos-v2';
 const CACHE_TTL_MS = 30 * 60 * 1000;
 
 function el(tag, className, text) {
@@ -119,13 +119,10 @@ async function fetchGithub() {
     // Cache corrompido ou indisponível: busca de novo.
   }
 
-  const [userRes, reposRes] = await Promise.all([
-    fetch(API_URL),
-    fetch(`${API_URL}/repos?per_page=100&sort=pushed`),
-  ]);
-  if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API indisponível');
+  const res = await fetch(`${API_URL}/repos?per_page=100&sort=pushed`);
+  if (!res.ok) throw new Error('GitHub API indisponível');
 
-  const data = { user: await userRes.json(), repos: await reposRes.json() };
+  const data = await res.json();
   try {
     sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), data }));
   } catch (_) {
@@ -142,7 +139,7 @@ function formatMonth(iso) {
   return new Date(iso).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
 }
 
-function applyGithubData({ user, repos }) {
+function applyGithubData(repos) {
   const curated = [...FEATURED_PROJECTS, ...OTHER_PROJECTS].map((p) => p.repo);
   const byName = new Map(repos.map((repo) => [repo.name, repo]));
 
@@ -173,12 +170,6 @@ function applyGithubData({ user, repos }) {
     others.prepend(card);
     card.classList.add('is-visible');
   });
-
-  const stats = document.getElementById('stats');
-  stats.querySelector('[data-stat="repos"]').textContent = user.public_repos;
-  stats.querySelector('[data-stat="flutter"]').textContent = FEATURED_PROJECTS.length + discovered.length;
-  stats.querySelector('[data-stat="since"]').textContent = new Date(user.created_at).getFullYear();
-  stats.hidden = false;
 }
 
 function setupThemeToggle() {
