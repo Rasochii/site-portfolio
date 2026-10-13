@@ -362,34 +362,87 @@ ul {
   font-weight: 600;
 }
 
-/* Featured projects */
+/* Projects */
 
-.featured {
+.project-list {
   display: grid;
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
 }
 
-.project {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 2.5rem;
-  align-items: center;
-  padding: 1.6rem;
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: opacity 0.5s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+}
+
+.card-more {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.project-dialog {
+  width: min(680px, 100% - 2rem);
+  max-height: min(88vh, 860px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
   box-shadow: var(--shadow);
 }
 
-.project:nth-child(even) .project-visual {
-  order: 2;
+.project-dialog::backdrop {
+  background: rgba(4, 8, 18, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.dialog-close {
+  position: sticky;
+  top: 0.8rem;
+  z-index: 2;
+  display: block;
+  width: 36px;
+  height: 36px;
+  /* Margem inferior negativa: o botão flutua sobre o conteúdo sem ocupar espaço. */
+  margin: 0.8rem 0.8rem calc(-36px - 0.8rem) auto;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dialog-body {
+  padding: 1.6rem 1.8rem 1.8rem;
 }
 
 .project-visual {
   display: grid;
   place-items: center;
-  min-height: 320px;
-  border-radius: 14px;
+  min-height: 240px;
   overflow: hidden;
   background: var(--bg-soft);
 }
@@ -540,16 +593,14 @@ ul {
   margin-top: 1.3rem;
 }
 
-/* Cards */
+/* Stack */
 
-.card-grid,
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.4rem;
 }
 
-.card,
 .stack-card {
   padding: 1.6rem;
   border: 1px solid var(--border);
@@ -557,21 +608,8 @@ ul {
   background: var(--surface);
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-}
-
-.card h3,
 .stack-card h3 {
   font-size: 1.25rem;
-}
-
-.card-link {
-  margin-top: auto;
-  padding-top: 1.3rem;
-  font-weight: 600;
-  font-size: 0.92rem;
 }
 
 .stack-card .chips {
@@ -678,20 +716,6 @@ ul {
 
   .avatar-ring img {
     width: 150px;
-  }
-
-  .project {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
-    padding: 1.2rem;
-  }
-
-  .project:nth-child(even) .project-visual {
-    order: 0;
-  }
-
-  .project-visual {
-    min-height: 240px;
   }
 
   .job {

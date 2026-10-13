@@ -125,19 +125,16 @@
     <section class="section container" id="projetos">
       <header class="section-header">
         <p class="eyebrow">Projetos pessoais</p>
-        <h2>Apps em Flutter</h2>
-        <p class="section-sub">O que cada um resolve, como foi construído e onde ver o código.</p>
+        <h2>O que eu construí</h2>
+        <p class="section-sub">Clique em um projeto para ver os detalhes.</p>
       </header>
-      <div class="featured" id="featured"></div>
+      <div class="project-list" id="projects"></div>
     </section>
 
-    <section class="section container" id="outros">
-      <header class="section-header">
-        <p class="eyebrow">Além do Flutter</p>
-        <h2>Outros projetos</h2>
-      </header>
-      <div class="card-grid" id="others"></div>
-    </section>
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+      <button class="dialog-close" type="button" aria-label="Fechar">×</button>
+      <div class="dialog-content"></div>
+    </dialog>
 
     <section class="section container" id="stack">
       <header class="section-header">
