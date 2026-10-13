@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse - aplicativo de habitos</title>
+  <desc id="desc">Banner com gradiente e linha de pulso para o README.</desc>
+  <defs>
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C83FF"/>
+      <stop offset="50%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0c12"/>
+      <stop offset="100%" stop-color="#15152a"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="280" rx="28" fill="url(#bgGrad)"/>
+  <rect x="2" y="2" width="896" height="276" rx="26" fill="none" stroke="url(#pulseGrad)" stroke-opacity="0.35" stroke-width="1"/>
+  <path
+    d="M 72 176 C 140 176 160 96 228 96 C 296 96 316 196 384 196 C 452 196 472 116 540 116 C 608 116 628 186 696 186 C 752 186 770 136 828 136"
+    fill="none"
+    stroke="url(#pulseGrad)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#glow)"/>
+  <text x="450" y="118" fill="#f4f4f8" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="56" font-weight="800" text-anchor="middle" letter-spacing="0.12em">PULSE</text>
+  <text x="450" y="158" fill="#9ca3c4" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="500" text-anchor="middle">Habitos, consistencia, evolucao no seu ritmo</text>
+  <text x="450" y="238" fill="#6b728e" font-family="ui-monospace, monospace" font-size="12" text-anchor="middle">Flutter &amp; Riverpod &amp; Drift &amp; Supabase</text>
+</svg>
